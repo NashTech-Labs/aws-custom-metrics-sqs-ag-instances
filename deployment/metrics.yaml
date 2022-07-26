@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sqs-custom-metrics
+  labels:
+    app: sqs-custom-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqs-custom-metrics
+  template:
+    metadata:
+      labels:
+        app: sqs-custom-metrics
+    spec:
+      containers:
+      - name: sqs-custom-metrics
+        image: <IMAGE-PUT>
+        env:
+        - name: SQS_QUEUE_NAME
+          value: "<VALUE-SQS_QUEUE_NAME>"
+        - name: SQS_QUEUE_URL
+          value: "VALUE - SQS_QUEUE_URL"
+        - name: AUTO_SCALING_GROUP_NAME
+          value: "VALUE - AUTO_SCALING_GROUP_NAME"
+        - name: AWS_DEFAULT_REGION
+          value: "Value - AWS_DEFAULT_REGION"
+        - name: AWS_ACCESS_KEY_ID
+          value: "Value - AWS_ACCESS_KEY_ID"   
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "Value - AWS_SECRET_ACCESS_KEY"         
